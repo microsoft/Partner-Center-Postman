@@ -1,0 +1,274 @@
+{
+	"info": {
+		"_postman_id": "4c02e63e-b104-43ed-b752-5f47c92f94d3",
+		"name": "Partner Center",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Get Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f3bf8026-7b63-4ce6-9991-de5370123894",
+								"exec": [
+									"try {",
+									"    var json = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"CustomerId\", json.items[0].id);",
+									"} catch(e) {",
+									"    console.log(e);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "MS-PartnerCenter-Client",
+								"value": "postman",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/customers?size=40 ",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"customers"
+							],
+							"query": [
+								{
+									"key": "size",
+									"value": "40 "
+								}
+							]
+						},
+						"description": "Gets a collection of resources that are associated with the partner."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer by Identifier",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "MS-PartnerCenter-Client",
+								"value": "postman",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/customers/{{CustomerId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"customers",
+								"{{CustomerId}}"
+							]
+						},
+						"description": "Gets a customer resource that corresponds to the specified customer identifier."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agreements",
+			"item": [
+				{
+					"name": "Get Agreement Metadata",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "MS-PartnerCenter-Client",
+								"value": "postman",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/agreements",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"agreements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscriptions",
+			"item": [
+				{
+					"name": "Get Customer Subscriptions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a80b684a-b766-4540-82a4-da81a8995411",
+								"exec": [
+									"try {",
+									"    var json = JSON.parse(responseBody);",
+									"    postman.setEnvironmentVariable(\"SubscriptionId\", json.items[0].id);",
+									"} catch(e) {",
+									"    console.log(e);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "MS-PartnerCenter-Client",
+								"value": "postman",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/customers/{{CustomerId}}/Subscriptions",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"customers",
+								"{{CustomerId}}",
+								"Subscriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Customer Subscription by Identifier",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "MS-PartnerCenter-Client",
+								"value": "postman",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BaseUrl}}/customers/{{CustomerId}}/subscriptions/{{SubscriptionId}}",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"customers",
+								"{{CustomerId}}",
+								"subscriptions",
+								"{{SubscriptionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessToken",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5ff730ae-da37-49c5-82bd-01c8fadea341",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "453ddc0c-14e0-42af-9d29-b44eee8b676e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
